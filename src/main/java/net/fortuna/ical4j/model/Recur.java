@@ -41,8 +41,15 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.*;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.List;
 
 /**
  * $Id$ [18-Apr-2004]
@@ -130,7 +137,7 @@ public class Recur implements Serializable {
     private static int maxIncrementCount;
 
     static {
-        maxIncrementCount = Configurator.getIntProperty(KEY_MAX_INCREMENT_COUNT).orElse(1000);
+        maxIncrementCount = Configurator.getIntProperty(KEY_MAX_INCREMENT_COUNT).or(1000);
     }
 
     private transient Logger log = LoggerFactory.getLogger(Recur.class);

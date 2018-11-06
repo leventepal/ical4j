@@ -31,9 +31,8 @@
  */
 package net.fortuna.ical4j.data;
 
+import net.fortuna.ical4j.model.optional.Optional;
 import net.fortuna.ical4j.util.Configurator;
-
-import java.util.Optional;
 
 /**
  * <pre>
@@ -61,7 +60,7 @@ public abstract class CalendarParserFactory {
     private static CalendarParserFactory instance;
     static {
         Optional<CalendarParserFactory> property = Configurator.getObjectProperty(KEY_FACTORY_CLASS);
-        instance = property.orElse(new DefaultCalendarParserFactory());
+        instance = property.or(new DefaultCalendarParserFactory());
     }
 
     /**

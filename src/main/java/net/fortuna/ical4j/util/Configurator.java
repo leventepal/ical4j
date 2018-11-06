@@ -31,12 +31,12 @@
  */
 package net.fortuna.ical4j.util;
 
+import net.fortuna.ical4j.model.optional.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
 import java.util.Properties;
 
 /**
@@ -89,10 +89,10 @@ public final class Configurator {
                 return Optional.of(intValue);
             } catch (NumberFormatException nfe) {
                 LOG.info(String.format("Invalid configuration value: %s", key), nfe);
-                return Optional.empty();
+                return Optional.absent();
             }
         } else {
-            return Optional.empty();
+            return Optional.absent();
         }
     }
 
@@ -103,10 +103,10 @@ public final class Configurator {
                 return Optional.of(Enum.valueOf(clazz, property.get()));
             } catch (IllegalArgumentException iae) {
                 LOG.info(String.format("Invalid configuration value: %s", key), iae);
-                return Optional.empty();
+                return Optional.absent();
             }
         } else {
-            return Optional.empty();
+            return Optional.absent();
         }
     }
 
@@ -117,10 +117,10 @@ public final class Configurator {
                 return Optional.of((T) Class.forName(property.get()).newInstance());
             } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 LOG.info(String.format("Invalid configuration value: %s", key), e);
-                return Optional.empty();
+                return Optional.absent();
             }
         } else {
-            return Optional.empty();
+            return Optional.absent();
         }
     }
 }

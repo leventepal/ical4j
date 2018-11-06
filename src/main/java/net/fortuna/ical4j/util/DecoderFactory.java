@@ -31,12 +31,12 @@
  */
 package net.fortuna.ical4j.util;
 
+import net.fortuna.ical4j.model.optional.Optional;
 import net.fortuna.ical4j.model.parameter.Encoding;
 import org.apache.commons.codec.BinaryDecoder;
 import org.apache.commons.codec.StringDecoder;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Optional;
 
 /**
  * Abstract base class for decoder factory implementations.
@@ -58,7 +58,7 @@ public abstract class DecoderFactory {
     private static DecoderFactory instance;
     static {
         Optional<DecoderFactory> property = Configurator.getObjectProperty(KEY_FACTORY_CLASS);
-        instance = property.orElse(new DefaultDecoderFactory());
+        instance = property.or(new DefaultDecoderFactory());
     }
     
     /**
